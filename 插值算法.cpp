@@ -49,7 +49,7 @@ double piecewise_linear(double x, double x_points[], double y_points[], int n) {
 void generate_plot_data(double x_start, double x_end, int steps,
                         double x_nodes[], double y_nodes[], int n_nodes) {
     FILE *fp = fopen("interp_data.txt", "w");
-    if (!fp) { perror("ÎÄ¼þ´ò¿ªÊ§°Ü"); return; }
+    if (!fp) { perror("æ–‡ä»¶æ‰“å¼€å¤±è´¥"); return; }
     double step = (x_end - x_start) / steps;
     for (int i = 0; i <= steps; i++) {
         double x = x_start + i * step;
@@ -74,8 +74,8 @@ int main() {
     double true_val = exp(-x_target);
 
     printf("==================================================\n");
-    printf("²åÖµ½á¹û¶Ô±È (x = %.1f)\n", x_target);
-    printf("ÕæÊµÖµ e^(-%.1f) = %.10f\n", x_target, true_val);
+    printf("æ’å€¼ç»“æžœå¯¹æ¯” (x = %.1f)\n", x_target);
+    printf("çœŸå®žå€¼ e^(-%.1f) = %.10f\n", x_target, true_val);
     printf("--------------------------------------------------\n");
 
   
@@ -84,22 +84,23 @@ int main() {
     double lag1 = lagrange(x_target, x_near, y_near, 2);
   
     double lag2 = lagrange(x_target, x_nodes, y_nodes, 3);
-    printf("À­¸ñÀÊÈÕ²åÖµ:\n");
-    printf("  1´Î²åÖµ (½Úµã2,3): %.10f, ¾ø¶ÔÎó²î = %.2e\n", lag1, fabs(lag1 - true_val));
-    printf("  2´Î²åÖµ (½Úµã1,2,3): %.10f, ¾ø¶ÔÎó²î = %.2e\n", lag2, fabs(lag2 - true_val));
+    printf("æ‹‰æ ¼æœ—æ—¥æ’å€¼:\n");
+    printf("  1æ¬¡æ’å€¼ (èŠ‚ç‚¹2,3): %.10f, ç»å¯¹è¯¯å·® = %.2e\n", lag1, fabs(lag1 - true_val));
+    printf("  2æ¬¡æ’å€¼ (èŠ‚ç‚¹1,2,3): %.10f, ç»å¯¹è¯¯å·® = %.2e\n", lag2, fabs(lag2 - true_val));
 
 
     double new1 = newton(x_target, x_near, y_near, 2);
     double new2 = newton(x_target, x_nodes, y_nodes, 3);
-    printf("Å£¶Ù²åÖµ:\n");
-    printf("  1´Î²åÖµ (½Úµã2,3): %.10f, ¾ø¶ÔÎó²î = %.2e\n", new1, fabs(new1 - true_val));
-    printf("  2´Î²åÖµ (½Úµã1,2,3): %.10f, ¾ø¶ÔÎó²î = %.2e\n", new2, fabs(new2 - true_val));
+    printf("ç‰›é¡¿æ’å€¼:\n");
+    printf("  1æ¬¡æ’å€¼ (èŠ‚ç‚¹2,3): %.10f, ç»å¯¹è¯¯å·® = %.2e\n", new1, fabs(new1 - true_val));
+    printf("  2æ¬¡æ’å€¼ (èŠ‚ç‚¹1,2,3): %.10f, ç»å¯¹è¯¯å·® = %.2e\n", new2, fabs(new2 - true_val));
 
     double linear_val = piecewise_linear(x_target, x_nodes, y_nodes, n);
-    printf("·Ö¶ÎÏßÐÔ²åÖµ:\n");
-    printf("  ²åÖµ½á¹û: %.10f, ¾ø¶ÔÎó²î = %.2e\n", linear_val, fabs(linear_val - true_val));
+    printf("åˆ†æ®µçº¿æ€§æ’å€¼:\n");
+    printf("  æ’å€¼ç»“æžœ: %.10f, ç»å¯¹è¯¯å·® = %.2e\n", linear_val, fabs(linear_val - true_val));
 
  
 
     return 0;
 }
+åˆ é™¤æ–‡ä»¶
